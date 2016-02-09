@@ -1,9 +1,14 @@
 [![GoDoc](https://godoc.org/github.com/jsimonetti/pwscheme?status.svg)](https://godoc.org/github.com/jsimonetti/pwscheme)
+[![Travis](https://img.shields.io/travis/jsimonetti/pwscheme.svg)](https://travis-ci.org/jsimonetti/pwscheme)
+
 
 # pwscheme
 Golang package defining password schemes
 
-- ssha          https://godoc.org/github.com/jsimonetti/pwscheme/ssha
-- ssha256       https://godoc.org/github.com/jsimonetti/pwscheme/ssha256
-- ssha512       https://godoc.org/github.com/jsimonetti/pwscheme/ssha512
+Supported schemes
+- {SSHA}        Salted SHA1
+- {SSHA256}     Salted SHA256
+- {SSHA512}     Salted SHA512
 
+
+Docs: https://godoc.org/github.com/jsimonetti/pwscheme

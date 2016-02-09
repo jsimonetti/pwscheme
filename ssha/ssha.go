@@ -37,11 +37,11 @@ func Generate(password string, length int) (string, error) {
 // This function compares a given password with a {SSHA} encoded password
 // Returns true is they match or an error otherwise
 func Validate(password string, hash string) (bool, error) {
-	if string(hash[0:6]) != "{SSHA}" {
+	if len(hash) < 7 || string(hash[0:6]) != "{SSHA}" {
 		return false, ErrNotSshaPassword
 	}
 	data, err := base64.StdEncoding.DecodeString(hash[6:])
-	if err != nil {
+	if len(data) < 21 || err != nil {
 		return false, ErrBase64DecodeFailed
 	}
 

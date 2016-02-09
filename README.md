@@ -1,3 +1,5 @@
+[![GoDoc](https://godoc.org/github.com/jsimonetti/pwscheme?status.svg)](https://godoc.org/github.com/jsimonetti/pwscheme)
+
 # pwscheme
 Golang package defining password schemes
 

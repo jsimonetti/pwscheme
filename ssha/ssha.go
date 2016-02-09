@@ -31,7 +31,7 @@ func Generate(password string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	hash := createGenerate(password, salt)
+	hash := createHash(password, salt)
 	ret := fmt.Sprintf("{SSHA}%s", base64.StdEncoding.EncodeToString(hash))
 	return ret, nil
 }
@@ -47,7 +47,7 @@ func Validate(password string, hash string) (bool, error) {
 		return false, ErrBase64DecodeFailed
 	}
 
-	newhash := createGenerate(password, data[len(data)-saltLength:])
+	newhash := createHash(password, data[len(data)-saltLength:])
 	hashedpw := base64.StdEncoding.EncodeToString(newhash)
 
 	if hashedpw == hash[6:] {
@@ -58,7 +58,7 @@ func Validate(password string, hash string) (bool, error) {
 }
 
 // This function appends password and salt together to a byte array
-func createGenerate(password string, salt []byte) []byte {
+func createHash(password string, salt []byte) []byte {
 	pass := []byte(password)
 	str := append(pass[:], salt[:]...)
 	sum := sha1.Sum(str)

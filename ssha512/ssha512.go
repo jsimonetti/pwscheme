@@ -23,7 +23,7 @@ var ErrNotMatching = errors.New("hash does not match password")
 
 // This function encrypts a password with a random salt of definable length and
 // returns the {SSHA512} encoding of the password
-func Generate(password string, length int) (string, error) {
+func Generate(password string, length uint8) (string, error) {
 	salt := make([]byte, length)
 	_, err := rand.Read(salt)
 	if err != nil {

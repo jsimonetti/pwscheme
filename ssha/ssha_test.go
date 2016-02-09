@@ -3,7 +3,7 @@ package ssha_test
 import (
 	"testing"
 
-	"github.com/jsimonetti/pwhash/ssha"
+	"github.com/jsimonetti/pwscheme/ssha"
 )
 
 func TestValidate(t *testing.T) {

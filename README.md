@@ -1,7 +1,5 @@
 [![GoDoc](https://godoc.org/github.com/jsimonetti/pwscheme?status.svg)](https://godoc.org/github.com/jsimonetti/pwscheme)
 [![Travis](https://api.travis-ci.org/jsimonetti/pwscheme.svg?branch=master)](https://travis-ci.org/jsimonetti/pwscheme)
-[![Coverage
-Status](https://coveralls.io/repos/github/jsimonetti/pwscheme/badge.svg?branch=master)](https://coveralls.io/github/jsimonetti/pwscheme?branch=master)
 
 # pwscheme
 Golang package defining password schemes

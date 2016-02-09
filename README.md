@@ -1,4 +1,6 @@
 # pwscheme
-Golang package defining SSHA password scheme
+Golang package defining password schemes
 
-Docs: https://godoc.org/github.com/jsimonetti/pwscheme/ssha
+- ssha          https://godoc.org/github.com/jsimonetti/pwscheme/ssha
+- ssha256       https://godoc.org/github.com/jsimonetti/pwscheme/ssha256
+

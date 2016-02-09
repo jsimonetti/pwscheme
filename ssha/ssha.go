@@ -22,7 +22,7 @@ var ErrBase64DecodeFailed = errors.New("base64 decode of hash failed")
 var ErrNotMatching = errors.New("hash does not match password")
 
 // This function encrypts a password with a random salt of definable length and
-// returns the {SSHA} encopding of the password
+// returns the {SSHA} encoding of the password
 func Generate(password string, length int) (string, error) {
 	salt := make([]byte, length)
 	_, err := rand.Read(salt)

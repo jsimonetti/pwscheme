@@ -12,7 +12,7 @@ import (
 	"fmt"
 )
 
-// ErrNotSshaPassword occurs when Validate receives a non-SSHA hash
+// ErrNotSshaPassword occurs when Validate receives a non-SSHA512 hash
 var ErrNotSshaPassword = errors.New("string is not a SSHA512 hashed password")
 
 // ErrBase64DecodeFailed occurs when the given hash cannot be decode
@@ -22,7 +22,7 @@ var ErrBase64DecodeFailed = errors.New("base64 decode of hash failed")
 var ErrNotMatching = errors.New("hash does not match password")
 
 // This function encrypts a password with a random salt of definable length and
-// returns the {SSHA} encopding of the password
+// returns the {SSHA512} encoding of the password
 func Generate(password string, length int) (string, error) {
 	salt := make([]byte, length)
 	_, err := rand.Read(salt)
@@ -34,7 +34,7 @@ func Generate(password string, length int) (string, error) {
 	return ret, nil
 }
 
-// This function compares a given password with a {SSHA} encoded password
+// This function compares a given password with a {SSHA512} encoded password
 // Returns true is they match or an error otherwise
 func Validate(password string, hash string) (bool, error) {
 	if len(hash) < 10 || string(hash[0:9]) != "{SSHA512}" {

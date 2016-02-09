@@ -25,16 +25,15 @@ const saltLength int = 4
 
 // This function encrypts a password with a random salt and returns the
 // {SSHA} encopding of the password
-func Generate(password string) string {
+func Generate(password string) (string, error) {
 	salt := make([]byte, saltLength)
 	_, err := rand.Read(salt)
 	if err != nil {
-		fmt.Println("error:", err)
-		return ""
+		return "", err
 	}
 	hash := createGenerate(password, salt)
 	ret := fmt.Sprintf("{SSHA}%s", base64.StdEncoding.EncodeToString(hash))
-	return ret
+	return ret, nil
 }
 
 // This function compares a given password with a {SSHA} encoded password

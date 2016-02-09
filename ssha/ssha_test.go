@@ -17,9 +17,16 @@ func TestValidate(t *testing.T) {
 
 func TestGenerate(t *testing.T) {
 	pass := "test123"
-	hash := ssha.Generate(pass)
+	var hash string
+	var err error
+	var res bool
 
-	if res, err := ssha.Validate(pass, hash); res != true {
-		t.Error("Generate of password fails", err)
+	if hash, err = ssha.Generate(pass); err != nil {
+		t.Error("Generate password fails", err)
+		return
+	}
+
+	if res, err = ssha.Validate(pass, hash); err != nil && res != false {
+		t.Error("Validate password fails", err)
 	}
 }

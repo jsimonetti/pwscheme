@@ -8,7 +8,7 @@ import (
 
 func TestValidate(t *testing.T) {
 	pass := "test123"
-	hash := "{SSHA}lJj507aRaXGguk1uTQoKmKQRV/7N1oB7pmhWdw=="
+	hash := "{SSHA}JFZFs0oHzxbMwkSJmYVeI8MnTDy/276a"
 
 	if res, err := ssha.Validate(pass, hash); res != true {
 		t.Error("Validate password fails", err)

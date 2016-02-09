@@ -27,6 +27,6 @@ func TestGenerate(t *testing.T) {
 	}
 
 	if res, err = ssha512.Validate(pass, hash); err != nil && res != false {
-		t.Error("Validate password fails", err)
+		t.Error("Generated hash can not be validated", err)
 	}
 }

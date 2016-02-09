@@ -21,7 +21,7 @@ func TestGenerate(t *testing.T) {
 	var err error
 	var res bool
 
-	if hash, err = ssha.Generate(pass); err != nil {
+	if hash, err = ssha.Generate(pass, 8); err != nil {
 		t.Error("Generate password fails", err)
 		return
 	}

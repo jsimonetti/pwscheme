@@ -1,7 +1,6 @@
 // Package md5crypt provides functions to generate and validate {MD5-CRYPT} styled
 // password schemes.
 // The method used is compatible with libc crypt used in /etc/shadow
-
 package md5crypt
 
 import (

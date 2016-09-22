@@ -1,3 +1,7 @@
+// Package md5crypt provides functions to generate and validate {MD5-CRYPT} styled
+// password schemes.
+// The method used is compatible with libc crypt used in /etc/shadow
+
 package md5crypt
 
 import (
@@ -10,7 +14,7 @@ import (
 
 const itoa64 = "./0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
-var md5_crypt_swaps = [16]int{12, 6, 0, 13, 7, 1, 14, 8, 2, 15, 9, 3, 5, 10, 4, 11}
+var md5CryptSwaps = [16]int{12, 6, 0, 13, 7, 1, 14, 8, 2, 15, 9, 3, 5, 10, 4, 11}
 
 var magic = []byte("$1$")
 
@@ -113,7 +117,7 @@ func crypt(password, salt []byte) []byte {
 	result := make([]byte, 0, 22)
 	v := uint(0)
 	bits := uint(0)
-	for _, i := range md5_crypt_swaps {
+	for _, i := range md5CryptSwaps {
 		v |= (uint(final[i]) << bits)
 		for bits = bits + 8; bits > 6; bits -= 6 {
 			result = append(result, itoa64[v&0x3f])

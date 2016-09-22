@@ -21,7 +21,7 @@ var ErrBase64DecodeFailed = errors.New("base64 decode of hash failed")
 // ErrNotMatching occurs when the given password and hash do not match
 var ErrNotMatching = errors.New("hash does not match password")
 
-// This function encrypts a password with a random salt of definable length and
+// Generate encrypts a password with a random salt of definable length and
 // returns the {SSHA512} encoding of the password
 func Generate(password string, length uint8) (string, error) {
 	salt := make([]byte, length)
@@ -34,7 +34,7 @@ func Generate(password string, length uint8) (string, error) {
 	return ret, nil
 }
 
-// This function compares a given password with a {SSHA512} encoded password
+// Validate compares a given password with a {SSHA512} encoded password
 // Returns true is they match or an error otherwise
 func Validate(password string, hash string) (bool, error) {
 	if len(hash) < 10 || string(hash[0:9]) != "{SSHA512}" {

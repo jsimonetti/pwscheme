@@ -60,12 +60,35 @@ func TestGenerate0(t *testing.T) {
 	if _, err := md5crypt.Generate("", 0); err != md5crypt.ErrSaltLengthInCorrect {
 		t.Errorf("Generated hash with too short salt did not fail")
 	}
-
 }
 
 func TestGenerate9(t *testing.T) {
 	if _, err := md5crypt.Generate("", 9); err != md5crypt.ErrSaltLengthInCorrect {
 		t.Errorf("Generated hash with too long salt did not fail")
 	}
+}
 
+func TestGenerateManyPasses(t *testing.T) {
+	pass := "foobar"
+	var hash string
+	var err error
+	var res bool
+
+	errors := 0
+
+	for i := 0; i < 1000; i++ {
+		if hash, err = md5crypt.Generate(pass, 8); err != nil {
+			t.Errorf("Generate password fails: %s", err)
+			return
+		}
+	
+		if res, err = md5crypt.Validate(pass, hash); err != nil || res != true {
+			t.Errorf("Generated hash can not be validated: %s", err)
+			errors += 1
+		}
+	}
+
+	if errors != 0 {
+		t.Errorf("%d error(s) occurred when running 1000 passes", errors)
+	}
 }

@@ -39,6 +39,14 @@ func Generate(password string, length uint8) (string, error) {
 		return "", err
 	}
 
+	// we need to reject salts that contain the char $
+	for strings.Count(string(salt), "$") != 0 {
+		_, err := rand.Read(salt)
+		if err != nil {
+			return "", err
+		}
+	}
+
 	hash := fmt.Sprintf("{MD5-CRYPT}%s", crypt([]byte(password), salt))
 
 	return hash, nil

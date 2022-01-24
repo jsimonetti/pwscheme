@@ -55,3 +55,28 @@ func TestGenerate8(t *testing.T) {
 		t.Errorf("Generated hash can not be validated: %s", err)
 	}
 }
+
+func TestGenerateManyPasses(t *testing.T) {
+	pass := "foobar"
+	var hash string
+	var err error
+	var res bool
+
+	errors := 0
+
+	for i := 0; i < 1000; i++ {
+		if hash, err = ssha.Generate(pass, 8); err != nil {
+			t.Errorf("Generate password fails: %s", err)
+			return
+		}
+	
+		if res, err = ssha.Validate(pass, hash); err != nil || res != true {
+			t.Errorf("Generated hash can not be validated: %s", err)
+			errors += 1
+		}
+	}
+
+	if errors != 0 {
+		t.Errorf("%d error(s) occurred when running 1000 passes", errors)
+	}
+}

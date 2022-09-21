@@ -7,6 +7,7 @@ package ssha256
 import (
 	"crypto/rand"
 	"crypto/sha256"
+	"crypto/subtle"
 	"encoding/base64"
 	"errors"
 	"fmt"
@@ -48,7 +49,7 @@ func Validate(password string, hash string) (bool, error) {
 	newhash := createHash(password, data[32:])
 	hashedpw := base64.StdEncoding.EncodeToString(newhash)
 
-	if hashedpw == hash[9:] {
+	if subtle.ConstantTimeCompare([]byte(hashedpw), []byte(hash[9:])) == 1 {
 		return true, nil
 	}
 

@@ -6,6 +6,7 @@ package md5crypt
 import (
 	"crypto/md5"
 	"crypto/rand"
+	"crypto/subtle"
 	"errors"
 	"fmt"
 	"strings"
@@ -63,7 +64,7 @@ func Validate(password string, hash string) (bool, error) {
 
 	newhash := crypt([]byte(password), []byte(data[0]))
 
-	if string(newhash) == hash[11:] {
+	if subtle.ConstantTimeCompare(newhash, []byte(hash[11:])) == 1 {
 		return true, nil
 	}
 

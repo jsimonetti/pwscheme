@@ -49,11 +49,7 @@ func Validate(password string, hash string) (bool, error) {
 	newhash := createHash(password, data[20:])
 	hashedpw := base64.StdEncoding.EncodeToString(newhash)
 
-	if hashedpw == hash[6:] {
-		return true, nil
-	}
-
-	if subtle.ConstantTimeCompare(newhash, []byte(hash[6:])) == 1 {
+	if subtle.ConstantTimeCompare([]byte(hashedpw), []byte(hash[6:])) == 1 {
 		return true, nil
 	}
 
